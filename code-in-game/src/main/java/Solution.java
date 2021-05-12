@@ -1,3 +1,4 @@
+import java.io.File;
 import java.math.BigInteger;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -10,7 +11,9 @@ public class Solution {
 		String a = timeConversion("07:05:45PM");
 	}
 
-	// Combinaison de n dans p
+	/**
+     * Combinaison de n dans p
+     */
 	static BigInteger combinaison(int n, int p) {
 		return factorial(n).divide(factorial(p).multiply(factorial(n - p)));
 	}
@@ -24,7 +27,10 @@ public class Solution {
 		return f;
 	}
 
-	// conversion de date
+	
+	/**
+     * conversion de date
+     */
 
 	public static String timeConversion(String s) {
 		Date date = null;
@@ -44,6 +50,34 @@ public class Solution {
 		return output;
 	}
 
+	/**
+     * Locates the universe-formula​​​​​​‌​​‌​​‌​​​​​‌‌​​‌​‌‌​​‌​​ file.
+     */
+	static String locateUniverseFormula() {
+    File dir = new File("/tmp/documents");
+
+     return findFile("universe-formula",dir);
+	}
+
+     static String findFile(String name,File file)
+    {
+        String chemin = null;
+        File[] list = file.listFiles();
+        if(list!=null)
+        for (File fil : list)
+        {
+            if (fil.isDirectory())
+            {
+                chemin = findFile(name,fil);
+            }
+            else if (name.equalsIgnoreCase(fil.getName()))
+            {
+                chemin = fil.getPath().toString();
+            }
+        }
+
+        return chemin;
+    }
 	
 
 }
